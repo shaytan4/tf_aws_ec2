@@ -14,7 +14,7 @@ variable "inst_name" {
 variable "aws_sec_gr" {
   type        = string
   default     = "appsecgroup3"
-  description = "value"
+  description = "Name for security group"
 }
 
 variable "aminame" {
@@ -45,7 +45,7 @@ variable "key_name" {
 
 # Defining Private Key
 variable "private_key" {
-  type    = string
-  default = "~/.ssh/id_rsa"
+  type        = string
+  default     = "~/.ssh/id_rsa"
   description = "Path to privat ssh key"
 }

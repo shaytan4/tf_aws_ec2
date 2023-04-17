@@ -59,6 +59,7 @@ resource "aws_instance" "web" {
   count           = var.master_count
   #ebs_optimized        = true
   #iam_instance_profile = "test"
+  #encrypted     = true
   monitoring = true
 
   tags = {
