@@ -17,7 +17,6 @@ variable "aws_sec_gr" {
   description = "value"
 }
 
-# Defining AMI
 variable "aminame" {
   type = map(string)
   default = {
@@ -26,7 +25,6 @@ variable "aminame" {
   description = "OS for installation"
 }
 
-# Defining Master count , num of instances
 variable "master_count" {
   type        = number
   default     = 1
@@ -39,7 +37,6 @@ variable "inst_type" {
   description = "Set type of instance"
 }
 
-# Definign Key Name for connection
 variable "key_name" {
   type        = string
   default     = "KonstHome"
@@ -50,4 +47,5 @@ variable "key_name" {
 variable "private_key" {
   type    = string
   default = "~/.ssh/id_rsa"
+  description = "Path to privat ssh key"
 }
