@@ -30,7 +30,7 @@
 | <a name="input_inst_type"></a> [inst\_type](#input\_inst\_type) | Set type of instance | `string` | `"t3.micro"` | no |
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Desired name of AWS key pair, ssh key loaded to AWS | `string` | `"KonstHome"` | no |
 | <a name="input_master_count"></a> [master\_count](#input\_master\_count) | Number of instances to deploy | `number` | `1` | no |
-| <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Defining Private Key | `string` | `"~/.ssh/id_rsa"` | no |
+| <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Path to privat ssh key | `string` | `"~/.ssh/id_rsa"` | no |
 
 ## Outputs
 
