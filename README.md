@@ -25,7 +25,7 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_aminame"></a> [aminame](#input\_aminame) | OS for installation | `map(string)` | ```{ "eu-north-1": "ami-0a6351192ce04d50c" }``` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | Set aws region | `string` | `"eu-north-1"` | no |
-| <a name="input_aws_sec_gr"></a> [aws\_sec\_gr](#input\_aws\_sec\_gr) | value | `string` | `"appsecgroup3"` | no |
+| <a name="input_aws_sec_gr"></a> [aws\_sec\_gr](#input\_aws\_sec\_gr) | Name for security group | `string` | `"appsecgroup3"` | no |
 | <a name="input_inst_name"></a> [inst\_name](#input\_inst\_name) | Name for instance | `string` | `"mycoolapp3"` | no |
 | <a name="input_inst_type"></a> [inst\_type](#input\_inst\_type) | Set type of instance | `string` | `"t3.micro"` | no |
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Desired name of AWS key pair, ssh key loaded to AWS | `string` | `"KonstHome"` | no |
