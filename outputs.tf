@@ -12,3 +12,9 @@ output "ec2_fqdn" {
   value       = aws_instance.web[*].public_dns
 }
 
+# output "load_balancer" {
+#   description = "Load balancer data"
+#   value       = aws_lb.test.dns_name
+# }
+
+
