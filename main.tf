@@ -7,6 +7,7 @@ provider "aws" {
 resource "aws_security_group" "web" {
   name        = var.aws_sec_gr
   description = "Allow in out traffic to our app"
+  vpc_id      = aws_vpc.demovpc.id
 
   ingress {
     description = "Allow ssh acces , 22 port"
@@ -52,11 +53,13 @@ resource "aws_security_group" "web" {
 
 # Create an EC2 instance using the AMI and security group
 resource "aws_instance" "web" {
-  ami             = lookup(var.aminame, var.aws_region)
-  instance_type   = var.inst_type
-  security_groups = [aws_security_group.web.name]
-  key_name        = var.key_name
-  count           = var.master_count
+  ami           = lookup(var.aminame, var.aws_region)
+  instance_type = var.inst_type
+  #security_groups = [aws_security_group.web.name]
+  vpc_security_group_ids = [aws_security_group.web.id]
+  key_name               = var.key_name
+  count                  = var.master_count
+  subnet_id              = aws_subnet.demosubnet1.id
   #ebs_optimized        = true
   #iam_instance_profile = "test"
   #encrypted     = true
@@ -93,13 +96,16 @@ resource "aws_instance" "web" {
   }
 }
 
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
+#
+#  Create target group !
+#
+# # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
 # resource "aws_lb" "test" {
 #   name               = "test-lb-tf"
 #   internal           = false
 #   load_balancer_type = "network"
-#   subnets            = [for subnet in aws_subnet.public : subnet.id]
-
+#   #subnets            = [for subnet in aws_subnet.demosubnet1 : subnet.id]
+#   subnets = [aws_subnet.demosubnet1.id]
 
 #   enable_deletion_protection = true
 

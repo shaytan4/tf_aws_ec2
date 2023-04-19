@@ -5,15 +5,21 @@ variable "aws_region" {
   description = "Set aws region"
 }
 
+variable "aws_subnet_region" {
+  type        = string
+  default     = "eu-north-1a"
+  description = "Set vpc subnet region"
+}
+
 variable "inst_name" {
   type        = string
-  default     = "mycoolapp3"
+  default     = "MYAPP1"
   description = "Name for instance"
 }
 
 variable "aws_sec_gr" {
   type        = string
-  default     = "appsecgroup3"
+  default     = "MYAPP_secgr1"
   description = "Name for security group"
 }
 
@@ -54,4 +60,20 @@ variable "admin_net" {
   type        = string
   default     = "93.126.95.237/32"
   description = "ip addr, or net for admin access SSH"
+}
+
+# VPC and subnets
+
+# Defining CIDR Block for VPC
+variable "vpc_cidr" {
+  default     = "10.0.0.0/16"
+  description = "Set virtual network"
+  type        = string
+}
+
+# Defining CIDR Block for Subnet
+variable "subnet_cidr" {
+  default     = "10.0.1.0/24"
+  description = "Set subnet cidr"
+  type        = string
 }

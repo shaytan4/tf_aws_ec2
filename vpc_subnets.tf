@@ -1,5 +1,4 @@
-# Creating VPC   
-# net 172.33.2.0/23
+# Creating VPC
 resource "aws_vpc" "demovpc" {
   cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
@@ -8,6 +7,7 @@ resource "aws_vpc" "demovpc" {
     Name = "Demo VPC"
   }
 }
+
 
 # Creating Internet Gateway 
 resource "aws_internet_gateway" "demogateway" {
@@ -23,13 +23,13 @@ resource "aws_route" "internet_access" {
 
 # Creating 1st subnet 
 resource "aws_subnet" "demosubnet1" {
-  vpc_id                  = aws_vpc.demovpc1.id
+  vpc_id                  = aws_vpc.demovpc.id
   cidr_block              = var.subnet_cidr
   map_public_ip_on_launch = true
-  availability_zone       = var.aws_region
+  availability_zone       = var.aws_subnet_region
 
   tags = {
-    Name = "Demo subnet"
+    Name = "Demo subnet1"
   }
 }
 
