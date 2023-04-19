@@ -27,7 +27,7 @@ variable "aminame" {
 
 variable "master_count" {
   type        = number
-  default     = 1
+  default     = 2
   description = "Number of instances to deploy"
 }
 
@@ -48,4 +48,10 @@ variable "private_key" {
   type        = string
   default     = "~/.ssh/id_rsa"
   description = "Path to privat ssh key"
+}
+
+variable "admin_net" {
+  type        = string
+  default     = "93.126.95.237/32"
+  description = "ip addr, or net for admin access SSH"
 }
