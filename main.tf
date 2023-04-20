@@ -84,32 +84,15 @@ resource "aws_instance" "web" {
   # Installing docker
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y",
-      "sudo yum install -y yum-utils",
-      "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
-      "sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
-      "sudo systemctl start docker",
-      "sudo systemctl enable docker",
+      "sudo yum install nginx -y",
+      # "sudo yum update -y",
+      # "sudo yum install -y yum-utils",
+      # "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
+      # "sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
+      # "sudo systemctl start docker",
+      # "sudo systemctl enable docker",
       "sudo yum install -y git"
     ]
     on_failure = continue
   }
 }
-
-#
-#  Create target group !
-#
-# # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
-# resource "aws_lb" "test" {
-#   name               = "test-lb-tf"
-#   internal           = false
-#   load_balancer_type = "network"
-#   #subnets            = [for subnet in aws_subnet.demosubnet1 : subnet.id]
-#   subnets = [aws_subnet.demosubnet1.id]
-
-#   enable_deletion_protection = true
-
-#   tags = {
-#     Environment = "production"
-#   }
-# }
