@@ -33,11 +33,18 @@ resource "aws_subnet" "demosubnet1" {
 }
 
 # target_type = instance (default)
+# health_check  ??   https://medium.com/@sampark02/application-load-balancer-and-target-group-attachment-using-terraform-d212ce8a38a0
 resource "aws_lb_target_group" "test_tgroup" {
   name     = "tf-my-lb-tgroup"
   port     = 80
   protocol = "TCP"
   vpc_id   = aws_vpc.demovpc.id
+  health_check {
+    interval = 5
+    timeout  = 2
+    #path     = "/health"
+    port = 80
+  }
 }
 
 # attach tgroup with ec2 instances
