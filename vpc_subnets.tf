@@ -43,7 +43,7 @@ resource "aws_lb_target_group" "test_tgroup" {
     interval = 5
     timeout  = 2
     path     = "/health"
-    port = 80
+    port     = 80
   }
 }
 
