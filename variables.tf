@@ -58,7 +58,7 @@ variable "private_key" {
 
 variable "admin_net" {
   type        = string
-  default     = "93.126.95.237/32"
+  default     = "22.11.33.44/32"
   description = "ip addr, or net for admin access SSH"
 }
 
