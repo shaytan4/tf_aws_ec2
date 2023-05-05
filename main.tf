@@ -7,6 +7,7 @@ provider "aws" {
 resource "aws_security_group" "web" {
   name        = var.aws_sec_gr
   description = "Allow in out traffic to our app"
+  vpc_id      = aws_vpc.demovpc.id
 
   ingress {
     description = "Allow ssh acces , 22 port"
@@ -52,11 +53,13 @@ resource "aws_security_group" "web" {
 
 # Create an EC2 instance using the AMI and security group
 resource "aws_instance" "web" {
-  ami             = lookup(var.aminame, var.aws_region)
-  instance_type   = var.inst_type
-  security_groups = [aws_security_group.web.name]
-  key_name        = var.key_name
-  count           = var.master_count
+  ami           = lookup(var.aminame, var.aws_region)
+  instance_type = var.inst_type
+  #security_groups = [aws_security_group.web.name]
+  vpc_security_group_ids = [aws_security_group.web.id]
+  key_name               = var.key_name
+  count                  = var.master_count
+  subnet_id              = aws_subnet.demosubnet1.id
   #ebs_optimized        = true
   #iam_instance_profile = "test"
   #encrypted     = true
@@ -81,12 +84,13 @@ resource "aws_instance" "web" {
   # Installing docker
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y",
-      "sudo yum install -y yum-utils",
-      "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
-      "sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
-      "sudo systemctl start docker",
-      "sudo systemctl enable docker",
+      "sudo yum install nginx -y",
+      # "sudo yum update -y",
+      # "sudo yum install -y yum-utils",
+      # "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
+      # "sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
+      # "sudo systemctl start docker",
+      # "sudo systemctl enable docker",
       "sudo yum install -y git"
     ]
     on_failure = continue
