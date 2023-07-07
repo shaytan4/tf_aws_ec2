@@ -20,7 +20,7 @@ variable "aws_sec_gr" {
 variable "aminame" {
   type = map(string)
   default = {
-    eu-north-1 = "ami-0a6351192ce04d50c" # RedHat
+    eu-north-1 = "ami-0a6351192ce04d50c" # debian
   }
   description = "OS for installation"
 }

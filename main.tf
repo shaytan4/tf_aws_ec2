@@ -72,7 +72,7 @@ resource "aws_instance" "web" {
     host = self.public_ip
     # The default username for our AMI
     user = "ec2-user"
-    # Private key for connection    
+    # Private key for connection
     private_key = file(var.private_key)
     # Type of connection
     type = "ssh"
@@ -81,12 +81,12 @@ resource "aws_instance" "web" {
   # Installing docker
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y",
-      "sudo yum install -y yum-utils",
-      "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
-      "sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
-      "sudo systemctl start docker",
-      "sudo systemctl enable docker",
+      # "sudo yum update -y",
+      # "sudo yum install -y yum-utils",
+      # "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
+      # "sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y",
+      # "sudo systemctl start docker",
+      # "sudo systemctl enable docker",
       "sudo yum install -y git"
     ]
     on_failure = continue
